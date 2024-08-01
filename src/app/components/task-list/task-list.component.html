@@ -1,0 +1,86 @@
+ <mat-toolbar class="custom-toolbar">
+    <img src="assets/images/noteify-low-resolution-logo-color-on-transparent-background.png" alt="LOGO">
+    <span>Kanban Board</span>
+  </mat-toolbar>
+
+<div class="main-board">
+  <div cdkDropListGroup class="board">
+    <div
+      class="column-container"
+      cdkDropList
+      [cdkDropListData]="tasks.todo"
+      (cdkDropListDropped)="drop($event, 'todo')"
+      (cdkDropListEntered)="startDragging()"
+      (cdkDropListExited)="stopDragging()"
+    >
+      <div class="column">
+        <h2 class="header-title to-do">To Do</h2>
+        <div class="task-list">
+          <div
+            *ngFor="let task of tasks.todo"
+            cdkDrag
+            [class.selected]="selectedTasks.has(task)"
+            (click)="toggleTaskSelection(task)"
+            class="task-card column-card"
+          >
+            <input type="checkbox" [checked]="selectedTasks.has(task)" />
+            {{ task.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      class="column-container"
+      cdkDropList
+      [cdkDropListData]="tasks.inProgress"
+      (cdkDropListDropped)="drop($event, 'in-progress')"
+      (cdkDropListEntered)="startDragging()"
+      (cdkDropListExited)="stopDragging()"
+    >
+      <div class="column">
+        <h2 class="header-title in-progress">In Progress</h2>
+        <div class="task-list">
+          <div
+            *ngFor="let task of tasks.inProgress"
+            cdkDrag
+            [class.selected]="selectedTasks.has(task)"
+            (click)="toggleTaskSelection(task)"
+            class="task-card column-card"
+          >
+            <input type="checkbox" [checked]="selectedTasks.has(task)" />
+            {{ task.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      class="column-container"
+      cdkDropList
+      [cdkDropListData]="tasks.done"
+      (cdkDropListDropped)="drop($event, 'done')"
+      (cdkDropListEntered)="startDragging()"
+      (cdkDropListExited)="stopDragging()"
+    >
+      <div class="column">
+        <h2 class="header-title done">Done</h2>
+        <div class="task-list">
+          <div
+            *ngFor="let task of tasks.done"
+            cdkDrag
+            [class.selected]="selectedTasks.has(task)"
+            (click)="toggleTaskSelection(task)"
+            class="task-card column-card"
+          >
+            <input type="checkbox" [checked]="selectedTasks.has(task)" />
+            {{ task.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="add-task">
+  <button class="add-task-button" (click)="openAddTaskDialog()">Add Task</button>
+  </div>
+</div>

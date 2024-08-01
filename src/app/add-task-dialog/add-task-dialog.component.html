@@ -1,0 +1,39 @@
+<div class="main">
+  <h1 mat-dialog-title class="custom-dialog-title">Task</h1>
+  <div mat-dialog-content class="custom-dialog-content">
+    <mat-form-field class="custom-form-field">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="task.title">
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="task.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="task.dueDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="task.status">
+        <mat-option value="todo">To Do</mat-option>
+        <mat-option value="in-progress">In Progress</mat-option>
+        <mat-option value="done">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="custom-form-field">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="task.priority">
+        <mat-option value="low">Low</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="high">High</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="custom-dialog-actions">
+    <button mat-button class="custom-button" (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" class="custom-button primary-button" (click)="onSubmit()">Save</button>
+  </div>
+</div>
